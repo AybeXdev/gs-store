@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GS Store - Ürünler</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div class="logo">
+        <img src="gs-store-logo.png" alt="GS Store Logo">
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <li><a href="urunler.html">Ürünler</a></li>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="sepet.html">Sepet</a></li>
+
+        </ul>
+      </nav>
+      <div id="cart-info">Sepet: <span id="cart-total">0</span> TL</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Ürünler</h2>
+      <div class="product-grid">
+        <div class="product-item">
+          <img src="gs_siyah_forma.jpg" alt="Siyah GS Forması">
+          <h3>GS Forması(Siyah)</h3>
+          <p>350 TL</p>
+          <button class="btn-add" onclick="addToCart('Siyah GS Forması', 350); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="gs_normal_forma.jpg" alt="Normal GS Forması">
+          <h3>GS Forması</h3>
+          <p>330 TL</p>
+          <button class="btn-add" onclick="addToCart('Normal GS Forması', 330); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="icardi_forma.jpg" alt="Icardi Forması">
+          <h3>Icardi Forması</h3>
+          <p>400 TL</p>
+          <button class="btn-add" onclick="addToCart('Icardi Forması', 400); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="osimhen_forma.jpg" alt="Osimhen Forması">
+          <h3>Osimhen Forması</h3>
+          <p>420 TL</p>
+          <button class="btn-add" onclick="addToCart('Osimhen Forması', 420); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="muslera_forma.jpg" alt="Muslera Forması">
+          <h3>Muslera Forması</h3>
+          <p>410 TL</p>
+          <button class="btn-add" onclick="addToCart('Muslera Forması', 410); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="gs_siyah_bere.jpg" alt="Siyah GS Bere">
+          <h3>GS Bere(Siyah)</h3>
+          <p>150 TL</p>
+          <button class="btn-add" onclick="addToCart('Siyah GS Bere', 150); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="gs_normal_bere.jpg" alt="Normal GS Bere">
+          <h3>GS Bere</h3>
+          <p>130 TL</p>
+          <button class="btn-add" onclick="addToCart('Normal GS Bere', 130); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="gs_siyah_atki.jpg" alt="Siyah GS Atkı">
+          <h3>GS Atkı(Siyah)</h3>
+          <p>120 TL</p>
+          <button class="btn-add" onclick="addToCart('Siyah GS Atkı', 120); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="gs_normal_atki.jpg" alt="Normal GS Atkı">
+          <h3>GS Atkı</h3>
+          <p>110 TL</p>
+          <button class="btn-add" onclick="addToCart('Normal GS Atkı', 110); showNotification()">Sepete Ekle</button>
+        </div>
+        <div class="product-item">
+          <img src="gs_kapsonlu.jpg" alt="GS Kapşonlu Sweatshirt">
+          <h3>GS Kapşonlu Sweatshirt</h3>
+          <p>450 TL</p>
+          <button class="btn-add" onclick="addToCart('GS Kapşonlu Sweatshirt', 450); showNotification()">Sepete Ekle</button>
+        </div>        
+        <div class="product-item">
+          <img src="siyah_gs_kapsonlu.jpg" alt="GS Kapşonlu Sweatshirt">
+          <h3>GS Kapşonlu Sweatshirt(Siyah)</h3>
+          <p>450 TL</p>
+          <button class="btn-add" onclick="addToCart('GS Kapşonlu Sweatshirt', 450); showNotification()">Sepete Ekle</button>
+        </div>      
+        <div class="product-item">
+          <img src="beyaz_gs_kapsonlu.jpg" alt="GS Kapşonlu Sweatshirt">
+          <h3>GS Kapşonlu Sweatshirt(Beyaz)</h3>
+          <p>450 TL</p>
+          <button class="btn-add" onclick="addToCart('GS Kapşonlu Sweatshirt', 450); showNotification()">Sepete Ekle</button>
+        </div>      
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 GS Store - Resmi Mağaza</p>
+  </footer>
+
+  <script>
+    function updateCartUI() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cartTotal = cart.reduce((acc, product) => acc + (product.price * product.count), 0);
+
+        document.querySelectorAll("#cart-total").forEach(element => {
+            element.textContent = cartTotal;
+        });
+
+        let cartItemsTable = document.getElementById("cart-items");
+        if (cartItemsTable) {
+            cartItemsTable.innerHTML = "";
+            if (cart.length === 0) {
+                cartItemsTable.innerHTML = "<tr><td colspan='3'>Sepetiniz boş</td></tr>";
+            } else {
+                cart.forEach(product => {
+                    let row = `<tr><td>${product.item}</td><td>${product.count}</td><td>${product.price * product.count} TL</td></tr>`;
+                    cartItemsTable.innerHTML += row;
+                });
+            }
+        }
+    }
+    
+    function showNotification() {
+        let notification = document.createElement("div");
+        notification.textContent = "Ürün başarıyla sepete eklendi!";
+        notification.style.position = "fixed";
+        notification.style.top = "10px";
+        notification.style.left = "50%";
+        notification.style.transform = "translateX(-50%)";
+        notification.style.background = "#fff";
+        notification.style.color = "#e10600";
+        notification.style.padding = "10px";
+        notification.style.borderRadius = "5px";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 1500);
+    }
+
+    function addToCart(item, price) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let existingItem = cart.find(product => product.item === item);
+        if (existingItem) {
+            existingItem.count += 1;
+        } else {
+            cart.push({ item, price, count: 1 });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartUI();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        updateCartUI();
+    });
+</script>
+
+</body>
+</html>

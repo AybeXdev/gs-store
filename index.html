@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GS Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: url('index.webp') no-repeat center center fixed; background-size: cover;">
+
+  <header>
+    <div class="top-bar">
+      <div class="logo">
+        <img src="gs-store-logo.png" alt="GS Store Logo">
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <li><a href="urunler.html">Ürünler</a></li>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="sepet.html">Sepet</a></li>
+        </ul>
+      </nav>
+      <div id="cart-info">Sepet: <span id="cart-total">0</span> TL</div>
+    </div>
+  </header>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  
+  <br>
+  <br>
+  <br><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  
+  <br>
+  <br>
+  <br>
+  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+  <footer>
+    <p>&copy; 2025 GS Store</p>
+  </footer>
+
+  <script>
+    function updateCartUI() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cartTotal = cart.reduce((acc, product) => acc + (product.price * product.count), 0);
+
+        document.querySelectorAll("#cart-total").forEach(element => {
+            element.textContent = cartTotal;
+        });
+
+        let cartItemsTable = document.getElementById("cart-items");
+        if (cartItemsTable) {
+            cartItemsTable.innerHTML = "";
+            if (cart.length === 0) {
+                cartItemsTable.innerHTML = "<tr><td colspan='3'>Sepetiniz boş</td></tr>";
+            } else {
+                cart.forEach(product => {
+                    let row = `<tr><td>${product.item}</td><td>${product.count}</td><td>${product.price * product.count} TL</td></tr>`;
+                    cartItemsTable.innerHTML += row;
+                });
+            }
+        }
+    }
+
+    function addToCart(item, price) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let existingItem = cart.find(product => product.item === item);
+        if (existingItem) {
+            existingItem.count += 1;
+        } else {
+            cart.push({ item, price, count: 1 });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartUI();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        updateCartUI();
+    });
+</script>
+
+</body>
+</html>
