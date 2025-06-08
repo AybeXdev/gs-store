@@ -1,2 +1,3 @@
-# gs-store
-orjinal site değildir- sadece kednı halımde yaptım örnek web sitesidir
+## UYARI  !!! 
+- BU SITE SADECE CANIM SIKILINCA ZAMANA KARŞI YARIŞIP YAPTIM SITEDIR
+- BAŞKA HİÇBİR AMACA HİZMET ETMEMEKTEDİR
